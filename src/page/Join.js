@@ -5,9 +5,10 @@ import { useNavigate } from "react-router-dom";
 import { collection, addDoc } from "firebase/firestore";
 
 const Join = () => {
+  const navigate = useNavigate();
+
   const emailref = React.useRef(null);
   const passwordref = React.useRef(null);
-  const navigate = useNavigate();
 
   const signup = async () => {
     const user = await createUserWithEmailAndPassword(
@@ -27,8 +28,8 @@ const Join = () => {
 
   return (
     <>
-      <input type="text" ref={emailref}></input>
-      <input type="text" ref={passwordref}></input>
+      ID: <input type="text" ref={emailref}></input>
+      PASSWORD: <input type="text" ref={passwordref}></input>
       <button onClick={signup}>회원가입</button>
     </>
   );

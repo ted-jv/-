@@ -9,7 +9,7 @@ const Login = () => {
   const id_ref = useRef(null);
   const password_ref = useRef(null);
 
-  const Click_Login = async () => {
+  const Click_LoginFB = async () => {
     console.log(id_ref.current.value);
     const user = await signInWithEmailAndPassword(
       auth,
@@ -26,7 +26,7 @@ const Login = () => {
       ID: <input ref={id_ref}></input>
       PASSWORD: <input ref={password_ref}></input>
       <br></br>
-      <button onClick={Click_Login}>로그인</button>
+      <button onClick={Click_LoginFB}>로그인</button>
     </>
   );
 };

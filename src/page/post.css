@@ -1,0 +1,29 @@
+body {
+    /* margin-top: 30px; */
+    /* background-color: #212529; */
+}
+
+.Container {
+    margin-top: 100px;
+    border: 1px solid black;
+    border-radius: 10px;
+    background-color: white;
+    width: 100px;
+    height: 800px;
+    display: flex;
+    justify-content: center;
+    /* align-items: center; */
+}
+
+.postbox {
+  display: flex;
+  flex-direction: column;
+  -webkit-box-pack: center;
+  justify-content: center;
+  max-width: 720px;
+  margin: 90px auto;
+}
+
+.row_total {
+    margin-top: 20px;
+}

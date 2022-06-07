@@ -22,12 +22,12 @@ const Login = () => {
   };
 
   return (
-    <>
+    <div>
       ID: <input ref={id_ref}></input>
       PASSWORD: <input ref={password_ref}></input>
       <br></br>
       <button onClick={Click_LoginFB}>로그인</button>
-    </>
+    </div>
   );
 };
 

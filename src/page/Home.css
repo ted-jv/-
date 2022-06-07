@@ -1,0 +1,15 @@
+.post_button {
+
+display: flex;
+-webkit-box-pack: center;
+justify-content: center;
+-webkit-box-align: center;
+align-items: center;
+width: 70px;
+
+position: fixed;
+bottom: 30px;
+right: 30px;
+background-color: #212529;;
+cursor: pointer;
+}

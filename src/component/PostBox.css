@@ -1,0 +1,14 @@
+.card_box {
+    position: relative;
+    /* width: 96%; */
+    padding: 20px;
+    /* border: 2px solid rgb(10, 112, 41);$ */
+    /* border-radius: 10px; */
+    /* background-color: rgba(255, 255, 255, 0.4); */
+    /* transition: box-shadow 300ms ease-in-out 0s; */
+    margin: 10px;
+}
+
+.Post_row {
+    margin-top: 70px;
+}

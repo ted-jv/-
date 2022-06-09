@@ -42,28 +42,30 @@ const Navbar_1 = () => {
 
   const goto_logout = () => {
     signOut(auth);
-
-    console.log(auth.currentUser);
   };
 
   return (
     <Navbar expand="lg" bg="dark" variant="dark" style={{ height: "100px" }}>
       <Container>
-        <Navbar.Brand href="/">Book Magazine</Navbar.Brand>
-        <Nav className="me-auto">
-          {is_login ? (
-            <Button variant="dark" onClick={goto_logout}>
-              Logout
+        <Navbar.Brand style={{ font_size: "20px" }} href="/">
+          Egon Schiele Art
+        </Navbar.Brand>
+        <div style={{ position: "relative", right: "10px" }}>
+          <Nav className="me-auto">
+            {is_login ? (
+              <Button variant="dark" onClick={goto_logout}>
+                Logout
+              </Button>
+            ) : (
+              <Button variant="dark" onClick={goto_login}>
+                Login
+              </Button>
+            )}
+            <Button variant="dark" onClick={goto_join}>
+              Sign up
             </Button>
-          ) : (
-            <Button variant="dark" onClick={goto_login}>
-              Login
-            </Button>
-          )}
-          <Button variant="dark" onClick={goto_join}>
-            Sign up
-          </Button>
-        </Nav>
+          </Nav>
+        </div>
       </Container>
     </Navbar>
   );

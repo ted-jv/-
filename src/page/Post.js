@@ -7,7 +7,7 @@ import styled from "styled-components";
 import "./post.css";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { AddPostFB } from "../redux/modules/reducer";
+import { AddPostFB } from "../redux/modules/post_reducer";
 
 const Post = () => {
   //기본 hook들
@@ -16,22 +16,38 @@ const Post = () => {
   // ref 훅 그리고 정의
   const title_ref = React.useRef(null);
   const content_ref = React.useRef(null);
+  const file_link_ref = React.useRef(null);
 
-  const Data_post = (event) => {
-    event.preventDefault();
+  const uploadFB = async (e) => {
+    // console.log(e.target.files);
+    const uploded_file = await uploadBytes(
+      ref(storage, `addimages/${e.target.files[0].name}`),
+      e.target.files[0]
+    );
+    // console.log(uploded_file);
+
+    const file_url = await getDownloadURL(uploded_file.ref);
+
+    console.log(file_url);
+    file_link_ref.current = { url: file_url };
+  };
+
+  const Data_post = () => {
+    //1. 아 데이터 전송은 되는데 여기에 console.log(event.target.value) 자체가 안 찍히고 있고
+    // 만약에  title, content을 안 썼으면 데이터 전송 안 되고 그 페이지에 머물게 하고픈데 계속 실패중..
+    // 흠 어케 해야할까??
 
     dispatch(
       AddPostFB({
-        title: title_ref.current.value,
-        content: content_ref.current.value,
+        title: title_ref.current?.value, // input에 requierd 랑 여기에 current 뒤에 ? 옵셔널 체이닝 사용 둘다 실패 뭐가 문제?
+        content: content_ref.current?.value,
+        imgage_url: file_link_ref.current?.url,
       })
     );
+    console.log(file_link_ref.current.url);
     navigate("/");
   };
 
-  // useEffect(() => {
-  //   dispatch();
-  // }, []);
   return (
     <Container>
       <div className="postbox">
@@ -59,7 +75,13 @@ const Post = () => {
           <Row className="row_total">
             <Col>
               <Form.Label></Form.Label>
-              <Form.Control ref={title_ref} placeholder="Book title" />
+              <Form.Control
+                ref={title_ref}
+                placeholder="Book title"
+                as="input"
+                type="text"
+                required
+              />
             </Col>
           </Row>
           <Row className="row_total">
@@ -70,6 +92,7 @@ const Post = () => {
                   ref={content_ref}
                   placeholder="Content"
                   as="textarea"
+                  required
                   rows={25}
                 />
               </Form>
@@ -79,13 +102,18 @@ const Post = () => {
             <Col>
               <Form>
                 <Form.Label></Form.Label>
-                <Form.Control type="file" size="sm" />
+                <Form.Control
+                  type="file"
+                  size="sm"
+                  onChange={uploadFB}
+                  required
+                />
               </Form>
             </Col>
           </Row>
         </Form.Group>
         <div className="postdetail_button">
-          <Button variant="outline-info" onClick={Data_post}>
+          <Button type="submit" variant="outline-dark" onClick={Data_post}>
             Save
           </Button>
         </div>

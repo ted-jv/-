@@ -1,3 +1,36 @@
+.bg_img {
+    background-image: ;
+}
+
+.home_box {
+    display: flex;
+    flex-direction: column;
+    -webkit-box-pack: center;
+    justify-content: center;
+    width: 50%;
+    margin: 90px auto;
+    /* border: 12px solid black */
+}
+
+.card_box {
+/* width: 40rem; */
+/* height: 40rem; */
+display: flex;
+justify-content: center;
+align-items: center;
+/* border: 7px solid black ; */
+}
+
+.Row {
+    position: relative;
+    top: 110px;
+
+}
+
+
+
+
+
 .post_button {
 
 display: flex;
@@ -14,10 +47,3 @@ background-color: #212529;;
 cursor: pointer;
 }
 
-.Carousel {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    
-}

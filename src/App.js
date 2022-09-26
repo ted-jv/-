@@ -1,16 +1,15 @@
-import { Routes, Route } from "react-router-dom";
-import Home from "./page/Home";
-import Post from "./page/Post";
-import Join from "./page/Join";
-import Login from "./page/Login";
-import PostBoxDetail from "./page/post_box_detail";
-import Navbar_1 from "./component/Navbar";
-import "bootstrap/dist/css/bootstrap.min.css";
+import { Routes, Route } from 'react-router-dom';
+import Post from './page/Post';
+import Join from './page/SignUp/SignUp';
+import Login from './page/SignIn/SignIn';
+import PostBoxDetail from './page/post_box_detail';
+import Header from './components/Header';
+import Home from './page/Home/Home';
 
 function App() {
   return (
     <>
-      <Navbar_1 />
+      <Header />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/post" element={<Post />} />

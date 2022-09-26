@@ -1,6 +1,6 @@
-import { createStore, applyMiddleware } from "redux";
-import rootReducer from "./modules/index";
-import thunk from "redux-thunk";
+import { createStore, applyMiddleware } from 'redux';
+import thunk from 'redux-thunk';
+import rootReducer from './reducers';
 
 const middlewares = [thunk];
 const enhancer = applyMiddleware(...middlewares);

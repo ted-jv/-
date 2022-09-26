@@ -1,23 +1,22 @@
-import React from "react";
-import { useNavigate } from "react-router-dom";
-import { auth } from "../shared/firebase";
-import { onAuthStateChanged, signOut } from "firebase/auth";
-import styled from "styled-components";
-import { Container, Row, Col, Nav, Button } from "react-bootstrap";
-import Navbar from "react-bootstrap/Navbar";
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
+import { auth } from '../firebase';
+import { Container, Nav, Button } from 'react-bootstrap';
+import Navbar from 'react-bootstrap/Navbar';
+import { onAuthStateChanged, signOut } from 'firebase/auth';
 
-const Navbar_1 = () => {
+const Header = () => {
   // 로그인 체크해서 --> 로그아웃 할 수 있게 만들어줌
 
   const [is_login, setLogin] = React.useState(false);
 
-  const loginCheck = async (user) => {
+  const loginCheck = async user => {
     if (user) {
       setLogin(true);
     } else {
       setLogin(false);
     }
-    console.log(auth.currentUser);
+    // console.log(auth.currentUser);
   };
 
   React.useEffect(() => {
@@ -29,15 +28,15 @@ const Navbar_1 = () => {
   const navigate = useNavigate();
 
   const goto_home = () => {
-    navigate("/");
+    navigate('/');
   };
 
   const goto_join = () => {
-    navigate("/Join");
+    navigate('/Join');
   };
 
   const goto_login = () => {
-    navigate("/Login");
+    navigate('/Login');
   };
 
   const goto_logout = () => {
@@ -45,12 +44,12 @@ const Navbar_1 = () => {
   };
 
   return (
-    <Navbar expand="lg" bg="dark" variant="dark" style={{ height: "100px" }}>
+    <Navbar expand="lg" bg="dark" variant="dark" style={{ height: '100px' }}>
       <Container>
-        <Navbar.Brand style={{ font_size: "20px" }} href="/">
+        <Navbar.Brand style={{ font_size: '20px' }} href="/">
           Egon Schiele Art
         </Navbar.Brand>
-        <div style={{ position: "relative", right: "10px" }}>
+        <div style={{ position: 'relative', right: '10px' }}>
           <Nav className="me-auto">
             {is_login ? (
               <Button variant="dark" onClick={goto_logout}>
@@ -71,4 +70,4 @@ const Navbar_1 = () => {
   );
 };
 
-export default Navbar_1;
+export default Header;

@@ -1,18 +1,17 @@
-import React from "react";
-import { createUserWithEmailAndPassword } from "firebase/auth";
-import { auth, db } from "../shared/firebase";
-import { useNavigate } from "react-router-dom";
-import { collection, addDoc } from "firebase/firestore";
-import { storage } from "../shared/firebase";
-import { getDownloadURL } from "firebase/storage";
-import { ref, uploadBytes } from "firebase/storage";
-import { Form, Button } from "react-bootstrap";
-import { AddUserFB } from "../redux/modules/user_reducer";
-import styled from "styled-components";
-import "./Join.css";
-import { useDispatch } from "react-redux";
+import React from 'react';
+import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { auth } from '../../firebase';
+import { useNavigate } from 'react-router-dom';
+import { storage } from '../../firebase';
+import { getDownloadURL } from 'firebase/storage';
+import { ref, uploadBytes } from 'firebase/storage';
+import { Form, Button } from 'react-bootstrap';
+import { AddUserFB } from '../../redux/reducers/userReducer';
+import styled from 'styled-components';
+import './SignUp.scss';
+import { useDispatch } from 'react-redux';
 
-const Join = () => {
+const SignUp = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -40,15 +39,15 @@ const Join = () => {
       })
     );
     let localStorage = window.localStorage;
-    localStorage.setItem("id", emailref.current.value);
-    localStorage.setItem("nickname", nicknameref.current.value);
+    localStorage.setItem('id', emailref.current.value);
+    localStorage.setItem('nickname', nicknameref.current.value);
 
-    navigate("/");
+    navigate('/');
   };
 
   //회원 정보 데이터 보내기
 
-  const uploadFB = async (e) => {
+  const uploadFB = async e => {
     console.log(e.target.files);
     const uploded_file = await uploadBytes(
       ref(storage, `images/${e.target.files[0].name}`),
@@ -80,11 +79,7 @@ const Join = () => {
       <div>
         <Form className="mb-3" controlId="exampleForm.ControlInput1">
           <Form.Label>ID</Form.Label>
-          <Form.Control
-            type="email"
-            placeholder="id@example.com"
-            ref={emailref}
-          />
+          <Form.Control type="email" placeholder="id@example.com" ref={emailref} />
         </Form>
       </div>
       <div>
@@ -103,8 +98,8 @@ const Join = () => {
           ref={passwordref}
         />
         <Form.Text id="passwordHelpBlock" muted>
-          Your password must be 6-20 characters long, contain letters and
-          numbers, and must not contain spaces, special characters, or emoji.
+          Your password must be 6-20 characters long, contain letters and numbers, and must not
+          contain spaces, special characters, or emoji.
         </Form.Text>
       </div>
       <div className="file_div">
@@ -133,4 +128,4 @@ const SignupBox = styled.div`
   margin: 60px auto;
 `;
 
-export default Join;
+export default SignUp;

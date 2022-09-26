@@ -1,13 +1,17 @@
-import React, { useRef } from "react";
-import { auth } from "../shared/firebase";
-import { signInWithEmailAndPassword } from "firebase/auth";
-import { useNavigate } from "react-router-dom";
-import { Form, Button } from "react-bootstrap";
-import styled from "styled-components";
-import "./Join.css";
+import React, { useRef } from 'react';
+import { auth } from '../../firebase';
+import { signInWithEmailAndPassword } from 'firebase/auth';
+import { useNavigate } from 'react-router-dom';
+import { Form, Button } from 'react-bootstrap';
+import { dispatch } from 'react';
+import styled from 'styled-components';
+import { useDispatch } from 'react-redux';
 
-const Login = () => {
+const SignIn = () => {
+  let localStorage = window.localStorage;
+
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const id_ref = useRef(null);
   const password_ref = useRef(null);
@@ -19,9 +23,10 @@ const Login = () => {
       id_ref.current.value,
       password_ref.current.value
     );
+    dispatch();
 
     console.log(user);
-    navigate("/");
+    navigate('/');
   };
 
   return (
@@ -29,11 +34,7 @@ const Login = () => {
       <>
         <Form className="mb-3" controlId="exampleForm.ControlInput1">
           <Form.Label>ID</Form.Label>
-          <Form.Control
-            type="email"
-            placeholder="id@example.com"
-            ref={id_ref}
-          />
+          <Form.Control type="email" placeholder="id@example.com" ref={id_ref} />
         </Form>
       </>
       <>
@@ -46,8 +47,8 @@ const Login = () => {
           ref={password_ref}
         />
         <Form.Text id="passwordHelpBlock" muted>
-          Your password must be 6-20 characters long, contain letters and
-          numbers, and must not contain spaces, special characters, or emoji.
+          Your password must be 6-20 characters long, contain letters and numbers, and must not
+          contain spaces, special characters, or emoji.
         </Form.Text>
       </>
       <div className="button_div">
@@ -75,4 +76,4 @@ const LoginBox = styled.div`
 `;
 
 // 1. ?? 위에서 로그인 버튼만 위로 margin-top : 10px 정도 주고 싶음 그걸 스타일 컴포넌트로 어떻게 할지??
-export default Login;
+export default SignIn;

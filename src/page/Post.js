@@ -1,13 +1,12 @@
-import React, { useEffect } from "react";
-import { ref, uploadBytes } from "firebase/storage";
-import { storage } from "../shared/firebase";
-import { getDownloadURL } from "firebase/storage";
-import { Col, Container, Row, Form, Button } from "react-bootstrap";
-import styled from "styled-components";
-import "./post.css";
-import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
-import { AddPostFB } from "../redux/modules/post_reducer";
+import React from 'react';
+import { ref, uploadBytes } from 'firebase/storage';
+import { storage } from '../firebase';
+import { getDownloadURL } from 'firebase/storage';
+import { Col, Container, Row, Form, Button } from 'react-bootstrap';
+import './post.css';
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { AddPostFB } from '../redux/reducers/postReducer';
 
 const Post = () => {
   //기본 hook들
@@ -18,7 +17,7 @@ const Post = () => {
   const content_ref = React.useRef(null);
   const file_link_ref = React.useRef(null);
 
-  const uploadFB = async (e) => {
+  const uploadFB = async e => {
     // console.log(e.target.files);
     const uploded_file = await uploadBytes(
       ref(storage, `addimages/${e.target.files[0].name}`),
@@ -27,6 +26,9 @@ const Post = () => {
     // console.log(uploded_file);
 
     const file_url = await getDownloadURL(uploded_file.ref);
+    // getDownloadURL 이게 있어서 아래에서  file_link_ref.current?.url,을 따올 수 있던 거임.
+    // 파이어베이스가 아닌 일반 서버와 연결해서 한다라고 했을 땐 blob? 인가 그거나 다른 방법을 찾아서
+    // url 을 다운 받아야함.
 
     console.log(file_url);
     file_link_ref.current = { url: file_url };
@@ -45,7 +47,7 @@ const Post = () => {
       })
     );
     console.log(file_link_ref.current.url);
-    navigate("/");
+    navigate('/');
   };
 
   return (
@@ -102,12 +104,7 @@ const Post = () => {
             <Col>
               <Form>
                 <Form.Label></Form.Label>
-                <Form.Control
-                  type="file"
-                  size="sm"
-                  onChange={uploadFB}
-                  required
-                />
+                <Form.Control type="file" size="sm" onChange={uploadFB} required />
               </Form>
             </Col>
           </Row>
